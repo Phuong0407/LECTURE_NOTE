@@ -1,0 +1,260 @@
+\usepackage{enumitem}
+\usepackage{libertine}
+\usepackage{changepage}
+\usepackage{ifthen}
+\usepackage{csquotes}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{marginnote}
+\usepackage{ragged2e}
+\usepackage{pdfpages}
+
+\usepackage{lipsum}
+
+\setcounter{secnumdepth}{3}
+
+
+
+\usepackage{geometry}
+\geometry{
+    top=2cm,
+    bottom=2cm,
+    inner=2cm,
+    outer=2cm,
+    heightrounded
+}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textbf{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textbf{\nouppercase{\rightmark}}}
+\fancyfoot[CE,CO]{}
+
+
+
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{esvect}
+\usepackage{esint}
+\usepackage{esdiff}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\sisetup{
+    product-symbol = \cdot,
+    inter-unit-product = \cdot,
+    exponent-product = \cdot,
+    per-mode = power
+}
+
+
+
+\newtcolorbox{important}[1][]{colback=gray!20, colframe=gray!20, width=\textwidth, boxrule=0pt, leftrule=1mm, rightrule=1mm, arc=0mm, auto outer arc, #1}
+
+\DeclareQuoteStyle{english}{\guillemotleft}{\guillemotright}{\textquoteleft}{\textquoteright}
+\setquotestyle{english}
+
+% environment for the quote
+\newenvironment{note}{%
+    \begin{adjustwidth}{1cm}{0cm}\noindent\ignorespaces
+        }{%
+    \end{adjustwidth}%
+}
+
+% environment for the quote with italic text
+\newenvironment{inote}{%
+    \begin{adjustwidth}{1cm}{0cm}\itshape\noindent\ignorespaces
+        }{%
+    \end{adjustwidth}%
+}
+
+% environment for the italic quote
+\newenvironment{conclusion}{%
+    \begin{adjustwidth}{1cm}{0cm}\itshape\noindent\ignorespaces\og{}\ignorespaces
+        }{%
+        \fg{}\end{adjustwidth}%
+}
+
+% environment for numbering example
+\newcounter{myexample}[chapter]
+\renewcommand{\themyexample}{Example \thechapter.\arabic{myexample}}
+\makeatletter
+\newenvironment{example}[1][]{%
+    \refstepcounter{myexample}
+    \begin{description}
+        \item[\themyexample\space\ifx\relax#1\relax\else(#1) \fi:]
+                \small %
+            }{%
+    \end{description}%
+}
+\makeatother
+
+% environment for numbering counterexample
+\newcounter{mycounterexample}[chapter]
+\renewcommand{\themycounterexample}{Counterexample \thechapter.\arabic{mycounterexample}}
+\makeatletter
+\newenvironment{counterexample}[1][]{%
+    \refstepcounter{mycounterexample}%
+    \begin{description}%
+        \item[\themycounterexample\space\ifx\relax#1\relax\else(#1) \fi:]%
+            }{%
+    \end{description}%
+}
+\makeatother
+
+% environment for numbering remark
+\newcounter{myremark}[chapter]
+\renewcommand{\themyremark}{Remark \thechapter.\arabic{myremark}}
+\makeatletter
+\newenvironment{remark}[1][]{
+    \refstepcounter{myremark}
+    \noindent\ignorespaces
+    \begin{description}
+        \item[\themyremark\space\ifx\relax#1\relax\else(#1) \fi:]
+            }{
+    \end{description}%
+}
+\makeatother
+
+% environment for numbering comment
+\newcounter{mycomment}[chapter]
+\renewcommand{\themycomment}{Comment \thechapter.\arabic{mycomment}}
+\makeatletter
+\renewenvironment{comment}[1][]{
+    \refstepcounter{mycomment}
+    \noindent\ignorespaces
+    \begin{description}
+        \item[\themycomment\space\ifx\relax#1\relax\else(#1) \fi:]
+            }{
+    \end{description}%
+}
+\makeatother
+
+
+
+% MATHEMATICAL PART
+% Define the custom theorem style
+\newtheoremstyle{bfnote}
+{}{}%                     % space above and below
+{\itshape}%               % body font
+{}%                       % indent amount
+{\bfseries}%              % theorem head font
+{.}%                      % punctuation after theorem head
+{ }%                      % space after theorem head
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+
+\theoremstyle{bfnote}
+
+% define theorem environments with gray background
+\newenvironment{definition}[1][]
+{\begin{important}\begin{definitioninner}[#1]\ignorespaces}
+            {\end{definitioninner}\end{important}}
+
+\newenvironment{axiom}[1][]
+{\begin{important}\begin{axiominner}[#1]\ignorespaces}
+            {\end{axiominner}\end{important}}
+
+\newenvironment{principle}[1][]
+{\begin{important}\begin{principleinner}[#1]\ignorespaces}
+            {\end{principleinner}\end{important}}
+
+\newenvironment{law}[1][]
+{\begin{important}\begin{lawinner}[#1]\ignorespaces}
+            {\end{lawinner}\end{important}}
+
+\newenvironment{lemma}[1][]
+{\begin{important}\begin{lemmainner}[#1]\ignorespaces}
+            {\end{lemmainner}\end{important}}
+
+\newenvironment{proposition}[1][]
+{\begin{important}\begin{propositioninner}[#1]\ignorespaces}
+            {\end{propositioninner}\end{important}}
+
+\newenvironment{theorem}[1][]
+{\begin{important}\begin{theoreminner}[#1]\ignorespaces}
+            {\end{theoreminner}\end{important}}
+
+\newenvironment{corollary}[1][]
+{\begin{important}\begin{corollaryinner}[#1]\ignorespaces}
+            {\end{corollaryinner}\end{important}}
+
+\newenvironment{postulation}[1][]
+{\begin{important}\begin{postulationinner}[#1]\ignorespaces}
+			{\end{postulationinner}\end{important}}
+
+% define inner theorem environments
+\newtheorem{definitioninner}{Definition}[chapter]
+\newtheorem{axiominner}{Axiom}[chapter]
+\newtheorem{principleinner}{Principle}[chapter]
+\newtheorem{lawinner}{Law}[chapter]
+\newtheorem{lemmainner}{Lemma}[chapter]
+\newtheorem{propositioninner}{Proposition}[chapter]
+\newtheorem{theoreminner}{Theorem}[chapter]
+\newtheorem{corollaryinner}{Corollary}[theoreminner]
+\newtheorem{exercise}{Excercise}[chapter]
+\newtheorem{solution}{Solution}[chapter]
+\newtheorem{postulationinner}{Postulation}[chapter]
+
+
+% set notation
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Id}{\mathbbm{1}}
+\let\emptyset\varnothing
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Idm}{Id}
+
+
+
+% long arc notation for time derivative
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+\newcommand{\arc@arc}[2]{%
+    \sbox0{$\m@th#1#2$}%
+    \vbox{
+        \hbox{\resizebox{\wd0}{\height}{\arc@char}}
+        \nointerlineskip
+        \box0
+    }%
+}
+\makeatother
+
+\newcommand{\difft}[1]{\dot{\arc{#1}}}
+\newcommand{\interior}[1]{\mathring{#1}}
+
+
+
+\usepackage{xparse}
+
+\newcounter{article}
+\NewDocumentEnvironment{article}{o}{%
+  \refstepcounter{article}%
+  \noindent$\blacktriangleright$~\textbf{\thearticle}%
+  \IfValueT{#1}{.~\textbf{#1}}.~
+  \ignorespaces
+}{%
+  \par\medskip
+}
+
+
+
+% HYPERLINK PART
+\usepackage[hidelinks]{hyperref}
