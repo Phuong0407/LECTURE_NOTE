@@ -1,4 +1,4 @@
-\documentclass[a4paer, 12pt]{book}
+\documentclass[a4paper, 12pt]{book}
 
 \input{preamble.tex}
 
@@ -7,12 +7,34 @@
 \chapter{Fundamental Theory of Airfoil}
 \label{chap:fundamental_theory_of_airfoil}
 \begin{article}[Ideal Fluid]
-    Air is described as an incompressible and inviscid fluid, or \emph{idea fluid}. By means of incompressibility, air shall have a constant density $\rho$, which is independent of all spatial and temporal changes. This hypothesis is counterintuitive at first, and we shall discuss its applicability now.
+    Air is described as an incompressible and inviscid fluid, or \emph{idea fluid}. By inviscid, we mean a fluid where no friction exists anywhere and at any moment within the fluid. Mathematically, the inviscid assumption can be expressed as the nullification of the viscous stress tensor, leading to the simplification of the Navier-Stokes equations into the Euler equations. Thus, the governing equations of motion for an inviscid fluid are given by:
+    \begin{equation}
+        \diffp{\bm{u}}{t} + \left( \bm{u} \cdot \bm{\nabla} \right) \bm{u} = - \dfrac{1}{\rho} \bm{\nabla}p + \bm{f}.
+    \end{equation}
 
-    By means of inviscid we mean a fluid where no friction exists anywhere and any moment inside fluid. It demands the fluid to be 
+    By the principle of incompressibility, the density $\rho$ of air is considered constant, unaffected by any spatial or temporal variations. Hence, the equation of mass conservation simplifies to the condition of vanishing divergence of the velocity vector field $\bm{u}$, expressed as:
+    \begin{equation}
+        \bm{\nabla} \cdot \bm{u} = 0.
+    \end{equation}
+    It should be noted that the assumptions of incompressibility and inviscid nature are not strictly applicable to real air in any flow regimes, since air is inherently viscous and compressible under certain flow regimes. However, for flows characterized by high Reynolds numbers and relatively low Mach numbers, the effects of viscosity can be considered negligible, and the assumption of incompressibility becomes a reasonable approximation.
 \end{article}
 
-\lipsum
+\begin{article}[Limit Range of Ideal Fluid Model]
+    Every flow regime is characterized by a non-dimensional number, called \emph{Reynolds number}.
+    \begin{align}
+        \text{Re} = \dfrac{\rho U L}{\mu}
+    \end{align}
+    This number is the ratio of convective force over viscous force. If the Reynolds number is large, then the convective force is much larger than the viscous force, and we can thus neglect the viscous force, considering the flow as inviscid. 
+
+    However, if we regard the flow at a small distance, then the convective force is of the same order as the viscous force, indicating that we cannot neglect the viscous effects. This region where viscosity cannot be neglected is known as the boundary layer, which has a thickness of several millimeters at most for external flows, as in our case. Thus, for the majority of the flow field, the effect of viscosity can be disregarded.
+
+    Nevertheless, within the boundary layer, viscous effects play a crucial role in determining the flow characteristics, and a separate analysis involving boundary layer theory is warranted. Additionally, at regions of separation, vortex shedding, or other phenomena involving strong velocity gradients, the assumption of an ideal fluid ceases to hold, and a more comprehensive treatment involving viscous forces becomes necessary.[need refine].
+\end{article}
+
+\begin{article}[Irrotational Potential Flow]
+    
+\end{article}
+
 
 % chapter Fundamental Theory of Airfoil (end)
 
