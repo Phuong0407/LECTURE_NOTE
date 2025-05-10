@@ -1,0 +1,163 @@
+\documentclass[a4paper, 12pt]{book}
+
+\input{preamble.tex}
+
+\begin{document}
+
+\chapter{Convex Sets}
+\label{chap:convex_sets}
+
+\section{Affine Sets}
+\label{sec:affine_sets}
+\begin{article}[Affine Combination]
+    Let $x_1, x_2$ be two distinct points in $\mathbb{R}^n$. The collection of points expressed as $\theta x_1 + (1 - \theta) x_2$, where $\theta \in \mathbb{R}$ arbitrary, is designated as the line passing through $x_1$ and $x_2$. Extending this notion, we define an affine combination of $k$ points $x_1, \ldots, x_k$ as the set of points of the form:
+    \begin{align}\label{eq:affine_combinations}
+        \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_k x_k.
+    \end{align}
+    where $\theta_1 + \theta_2 + \ldots + \theta_k = 1$.
+\end{article}
+
+\begin{article}[Affine Set]
+    A subset $C \subseteq \mathbb{R}^n$ is classified as an affine set if for any two distinct points $x_1, x_2 \in C$, the line connecting $x_1$ and $x_2$ is entirely contained in $C$. More comprehensively, a subset $C$ of $\mathbb{R}^n$ is an affine set if every affine combination in $C$ remains within $C$.
+    The ensemble of all affine combinations of points in a set $C$ is termed the affine hull of $C$.
+\end{article}
+
+\begin{article}[Proof of the Generalized Definition of Affine Set]
+    Premise: Let $C \subseteq \mathbb{R}^n$ be a set. We assert that $C$ is an affine set if and only if any affine combination of points within $C$ remains contained in $C$.
+    
+    Necessity analysis: Consider a finite collection of points $x_1, x_2, \ldots, x_k \in C$ and a set of scalars $\theta_1, \theta_2, \dots, \theta_k$ satisfying $\theta_1 + \theta_2 + \ldots + \theta_k = 1$. The affine combinations of these points can be expressed as $x = \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_k x_k$. Since the sum is exactly 1, there must exist among the coefficients $\theta_i$ a nonzero value, say $\theta_{i_0}$. For the remaining factors, we can scale them by dividing by $\theta_{i_0}$ to ensure their sum remains 1. By applying induction, the affine combination is confirmed to belong to $C$.
+
+    Sufficiency analysis: this follows directly, as affine combinations of two points are a subset of all affine combinations of points in $C$.
+\end{article}
+
+\begin{article}[Affine Hull]
+    The ensemble of all affine combinations of points in a set $C$ is termed the affine hull of $C$. The affine dimension of a subset $C$ in $\R^n$ is then defined as the dimension of the affine hull of $C$. Note that the affine dimension of a subset $C$ is not always the same as the dimension of $C$ in general.
+\end{article}
+% section Convex Sets (end)
+
+\section{Convex Sets}
+\label{sec:convex_sets}
+
+We call a closed line joining two distict points $x_1$ and $x_2$ the set of all points of the form $\theta x_1 + (1-\theta) x_2$, where $\theta \in [0, 1]$. A subset $C$ of $\R^n$ is called \emph{convex set} if any clsoed line joining two distict points in $C$ is contained $C$.
+
+To generalize this definition, consider $k$ distict points $x_1, \dots, x_k$ in $\R^n$. We call the set of all points of the form: $\theta_1 x_1 + \dots + \theta_k x_k$, where $\theta_1 + \dots + \theta_k = 1$ and $\theta_i \geq 0$, $i = 1, \dots, k$ the \emph{convex combinations} of $x_1, \dots, x_k$. We call the set of all convex combinations of $k$ points in $C$ the \emph{convex hull} of $C$. Then a subset $C$ of $\R^n$ is convex if the convex hull of $C$ is equal to $C$.
+
+% section Convex Sets (end)
+
+
+
+\section{Cones}
+\label{sec:cones}
+
+A set $C$ is called a \emph{cone} if for every $x \in C$ and $\theta \geq 0$, we have $\theta x \in C$. A cone $C$ is called \emph{convex cone} if it is a cone and it is convex. In other word, for any $x_1, x_2$ in $C$ and $\theta_1, \theta_2 \geq 0$, we have
+\begin{align*}
+    \theta_1 x_1 + \theta_2 x_2 \in C.
+\end{align*}
+
+To generalize this definition, consider $k$ points $x_1, \dots, x_k$ in $\R^n$. We call the set of all points of the form: $\theta_1 x_1 + \dots + \theta_k x_k$, where $\theta_i \geq 0$, $i = 1, \dots, k$ the \emph{conic combinations} of $x_1, \dots, x_k$. The conic hull of a set $C$ is the set of all conic combinations of points in $C$. Then a subset $C$ of $\R^n$ is called a \emph{convex cone} if the conic hull of $C$ is equal to $C$.
+
+% section Cones (end)
+
+
+
+\section{Hyperplane and Subspaces}
+\label{sec:hyperplane_and_subspaces}
+
+Given a nonnull vector $a \in \R^n$ and a real number $b \in \R$, the set of all points $x \in \R^n$ of the form $a^T x = b$ is called \emph{hyperplane} with normal vector $a$ and distanced $b$ from the origin. A hyperplane divides $\R^n$ into two halfspaces, which is therefore a subset of $\R^n$ where each point is of the form: $a^T x \leq b$ or $a^T x \geq b$. If we replace the $\leq$ or $\geq$ with strict inequality sign $<$ or $>$, respectively, then we get the open halfspaces of $\R^n$.
+
+A polyhedra is defined as the intersection of a \emph{finite number} of halfspaces. In other word, a polyhedra is the solution set of a \emph{finite number} of inequalities and equalities.
+\begin{align*}
+    \mathcal{P} := \{ a_j^T x \leq b_j, j = 1, \dots, m, c_j^T x = d_j, j = 1, \dots, p \}.
+\end{align*}
+The expression of $\mathcal{P}$ is called the standard form of a polyhedra. Note that a polyhedra is always convex by definition.
+
+\begin{exercise}
+    Is the intersection of the positive orthant of $\R^n$ and the unit Euclidean ball a polyhedra?
+\end{exercise}
+
+\begin{exercise}
+    The same question as above, but now the objective set is the intersection of the positive orthant of $\R^n$ and the unit 1-ball. Recall that the definition of a 1-norm is given as follow:
+    \begin{align*}
+        \| y \|_1 = \sum_{i=1}^n |y_i|.
+    \end{align*}
+\end{exercise}
+
+\begin{exercise}[Computational Geometry Fundamental Object]
+    Given a point $x_0$ and $k$ points $x_1, \dots, x_k$ in $\R^n$. The set of all points which is closer to $x_0$ than to any of the points $x_1, \dots, x_k$ is called the \emph{Voronoi Diagram} of $x_0$ with respect to $x_1, \dots, x_k$.
+    %The Voronoi diagram is the fundamental object in computational geometry as it helps locate the \emph{closest region} of a point and therefore the process of inserting point. This is fundamental of algorithm in Delaunay triangulation and therefore discretization of space.
+    Prove that $V$ is a polyhedron and express it as standard form.
+\end{exercise}
+
+\begin{exercise}
+    Conversely, given a polyhedron $P$ with nonempty interior, find $x_0, x_1 \dots x_k$ that $P$ is the Voronoi diagram of $x_0$ with respect to $x_1, \dots, x_k$.
+\end{exercise}
+
+Given $k+1$ points $v_0, \dots, v_k$ which are affinely independent, the convex hull of these points is called \emph{simplex} of $v_0, \dots, v_k$. 
+
+\begin{exercise}
+    Given a polyhedron, can we express it as a simplex of a given set of points? Find explicitly the set of points $v_0, \dots, v_k$?
+\end{exercise}
+
+% section Hyperplane_and_Subspaces (end)
+
+\section{Convexity-Preserving Operations}
+\label{sec:convexity_preserving_operations}
+
+By definition, the intersection of two convex sets is convex.
+
+Affine function
+
+Linear fractional 
+
+Perspective function
+
+
+
+
+
+
+
+% section Convexity_Preserving_Operations (end)
+
+\section{Generalized Inequality}
+\label{sec:generalized_inequality}
+
+\begin{definition}
+A proper cone $K$ is a cone that satisfied the following conditions: 
+    \begin{enumerate}
+        \item $K$ is convex;
+        \item $K$ is closed;
+        \item $K$ has has nonempty interior;
+        \item $K$ is pointed which means that $K$ contains no line.
+    \end{enumerate}
+
+\end{definition}
+
+We now discuss each condition in detail. The first condition, convexity, is the most critical, as it ensures the tractability of the optimization problem and the validity of strong duality. The second and third conditions, closedness and nonempty interior, are technical requirements that guarantee well-defined operators and the existence of strictly feasible points. The fourth condition, pointedness, restricts the feasible directions to a single orientation, preventing the inclusion of opposing vectors. This property is essential for ensuring the well-posedness of the optimization problem, the stability of solutions, and the proper behavior of dual formulations.
+
+A proper cone $K$ can be used to define a generalized inequality. This generalized inequality is a partial ordered on $\R^n$, denoted by $\succeq_K$, defined as follows:
+\begin{align*}
+    x \succeq_K y \Longleftrightarrow x - y \in K.
+\end{align*}
+A strict version of  this inequality is defined as follows:
+\begin{align*}
+    x \succ_K y \Longleftrightarrow x - y \in int K.
+\end{align*}
+
+
+
+% section Generalized Inequality (end)
+
+
+
+\section{Seperating and Supporting Hyperplanes}
+\label{sec:seperating_and_supporting_hyperplanes}
+
+In optimization, particularly in convex problems, separating and supporting hyperplanes play a fundamental role in understanding the structure of feasible regions and optimal solutions. A separating hyperplane provides a clear division between two non-overlapping sets, helping to establish when a solution space is feasible or when two regions are distinctly apart. Meanwhile, a supporting hyperplane touches a convex set at a boundary point without cutting through it, providing a geometric characterization of optimality conditions. We have already had express the separation using point-wise set formulation. However, this formulation is not very convenient for the optimization problem. Therefore, we need to formulate the separation in the form of hyperplane, something we could control by a prescribe formula.
+
+% section Seperating and Supporting Hyperplanes (end)
+
+% chapter Convex Sets (end)
+
+
+\end{document}
